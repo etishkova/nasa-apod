@@ -1,0 +1,11 @@
+ext {
+    converterVersion        =   '2.5.0'
+    retrofitVersion         =   '2.6.1'
+    daggerVersion           =   '2.21'
+    okhttpVersion           =   '3.13.1'
+    okHttpLoggerVersion     =   '3.9.1'
+    timberVersion           =   '4.7.1'
+    rxJavaVersion           =   '2.2.6'
+    rxAndroidVersion        =   '2.1.1'
+    lifeCycleVersion        =   '2.0.0'
+}
