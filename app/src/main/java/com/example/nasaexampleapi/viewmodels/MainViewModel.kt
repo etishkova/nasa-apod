@@ -21,8 +21,13 @@ class MainViewModel : ViewModel() {
     lateinit var nasaUseCase: NasaApodUseCase
 
     fun requestImageOfTheDay(): LiveData<ApodImageState> {
-        val observableResponse = nasaUseCase.getNasaImageOfTheDay(ImageRequest())
+        val observableResponse = nasaUseCase.getNasaImageOfTheDay()
         return convertToLiveData(observableResponse.toFlowable(BackpressureStrategy.BUFFER))
+    }
+
+    fun requestRandomDateImageOfTheDay(): LiveData<ApodImageState> {
+        val observableRandomImageOfTheDay = nasaUseCase.getNasaRandomDayImageOfTheDay()
+        return convertToLiveData(observableRandomImageOfTheDay.toFlowable(BackpressureStrategy.DROP))
     }
 
     private fun convertToLiveData(flowable: Flowable<ApodImageState>): LiveData<ApodImageState> {

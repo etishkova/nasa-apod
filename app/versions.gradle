@@ -7,5 +7,6 @@ ext {
     timberVersion           =   '4.7.1'
     rxJavaVersion           =   '2.2.6'
     rxAndroidVersion        =   '2.1.1'
-    lifeCycleVersion        =   '2.0.0'
+    lifeCycleVersion        =   '2.1.0'
+    imageRendering          =   '4.9.0'
 }

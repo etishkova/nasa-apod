@@ -3,6 +3,7 @@ package com.example.nasaexampleapi.business
 import com.example.nasaexampleapi.domain.NasaApodRepository
 import com.example.nasaexampleapi.models.ApodImageState
 import com.example.nasaexampleapi.models.ImageRequest
+import com.example.nasaexampleapi.utilities.Helpers
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,9 +15,15 @@ import javax.inject.Inject
  */
 class NasaApodUseCase @Inject constructor(private val nasaApodRepository: NasaApodRepository) {
 
-    fun getNasaImageOfTheDay(request: ImageRequest): Observable<ApodImageState> {
-        //TODO: add date conversion to YYYY-MM-DD format
-        val response = nasaApodRepository.requestPictureOfTheDay(null, null)
+    fun getNasaRandomDayImageOfTheDay(): Observable<ApodImageState> {
+        val randomDate = Helpers.getRandomStringDateBeforeToday()
+        return getNasaImageOfTheDay(ImageRequest(randomDate))
+    }
+
+    private fun getNasaImageOfTheDay(imageRequest: ImageRequest?): Observable<ApodImageState> {
+        val response = nasaApodRepository.requestPictureOfTheDay(
+            imageRequest?.date
+        )
 
         val requestResult = response.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -27,9 +34,13 @@ class NasaApodUseCase @Inject constructor(private val nasaApodRepository: NasaAp
                 ApodImageState.EmptyResult
             } else ApodImageState.ImageResult(imageDetailsResponse)
         }
-            .startWith(ApodImageState.RequestNotStartedYet)
+            .startWith(ApodImageState.Loading)
             .onErrorReturn { error ->
                 ApodImageState.Error(error)
             }
+    }
+
+    fun getNasaImageOfTheDay(): Observable<ApodImageState> {
+       return getNasaImageOfTheDay(ImageRequest())
     }
 }

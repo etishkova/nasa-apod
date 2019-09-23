@@ -1,10 +1,7 @@
 package com.example.nasaexampleapi.models
 
-import java.util.*
-
 data class ImageRequest(
-    var date: Date?,
-    var hd: Boolean?
+    var date: String?  //date in format YYYY-MM-DD
 ) {
-    constructor() : this(null, null)
+    constructor() : this(null)
 }

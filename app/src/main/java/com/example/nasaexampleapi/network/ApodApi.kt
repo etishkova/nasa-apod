@@ -9,7 +9,6 @@ interface ApodApi {
 
     @GET("/planetary/apod")
     fun requestPictureOfTheDay(
-        @Query("date") date: String?,
-        @Query("hd") hd: String?
+        @Query("date") date: String?
     ): Observable<ImageResponse>
 }

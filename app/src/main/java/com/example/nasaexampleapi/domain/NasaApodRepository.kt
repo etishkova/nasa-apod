@@ -13,9 +13,8 @@ import javax.inject.Inject
 class NasaApodRepository @Inject constructor(private val nasaApodApi: ApodApi) {
 
     fun requestPictureOfTheDay(
-        date: String?,
-        hd: String?
+        date: String?
     ): Observable<ImageResponse> {
-        return nasaApodApi.requestPictureOfTheDay(date, hd)
+        return nasaApodApi.requestPictureOfTheDay(date)
     }
 }

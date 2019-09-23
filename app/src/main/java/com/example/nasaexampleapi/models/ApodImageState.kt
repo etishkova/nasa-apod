@@ -6,6 +6,8 @@ sealed class ApodImageState {
 
     object EmptyResult : ApodImageState()
 
+    object Loading : ApodImageState()
+
     class ImageResult(val imageResponse: ImageResponse) : ApodImageState()
 
     class Error(val error: Throwable) : ApodImageState()

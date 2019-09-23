@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -25,7 +26,7 @@ class NetworkModule {
     @Provides
     @ApplicationScope
     fun provideGson(gsonBuilder: GsonBuilder): Gson {
-        //gsonBuilder.setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+        gsonBuilder.setDateFormat("yyyy-MM-dd")
         return gsonBuilder.create()
     }
 
@@ -44,9 +45,9 @@ class NetworkModule {
         //TODO Comment out when uncommenting below
         httpClientBuilder.addInterceptor(NetworkInterceptor())
         //TODO Uncomment to print request logs
-        /*val interceptor = HttpLoggingInterceptor()
+        val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        httpClientBuilder.addInterceptor(interceptor)*/
+        httpClientBuilder.addInterceptor(interceptor)
         return httpClientBuilder.build()
     }
 

@@ -35,6 +35,12 @@ android {
     }
 }
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -75,4 +81,7 @@ dependencies {
     //LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifeCycleVersion"
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifeCycleVersion"
+
+    //Image rendering
+    implementation "com.github.bumptech.glide:glide:$imageRendering"
 }
