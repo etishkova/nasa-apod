@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">NasaExampleApi</string>
+    <string name="app_name">Nasa APOD API </string>
     <string name="title">Title</string>
+    <string name="empty_text"></string>
     <string name="get_today_image_btn">Get today\'s image</string>
     <string name="get_random_image_btn">Get random image</string>
     <string name="description">Description</string>

@@ -2,7 +2,7 @@ package com.example.nasaexampleapi.domain
 
 import com.example.nasaexampleapi.models.ImageResponse
 import com.example.nasaexampleapi.network.ApodApi
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import javax.inject.Inject
 
 /**
@@ -14,7 +14,7 @@ class NasaApodRepository @Inject constructor(private val nasaApodApi: ApodApi) {
 
     fun requestPictureOfTheDay(
         date: String?
-    ): Observable<ImageResponse> {
+    ): Flowable<ImageResponse> {
         return nasaApodApi.requestPictureOfTheDay(date)
     }
 }

@@ -37,8 +37,6 @@ class NasaApplication: Application(), HasActivityInjector, HasServiceInjector {
             .application(this)
             .build()
         appComponent.inject(this)
-
-
     }
 
     companion object {
