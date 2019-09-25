@@ -1,18 +1,16 @@
 package com.example.nasaexampleapi.utilities
 
+import com.example.nasaexampleapi.utils.Values.dateAfterNotIncluding
+import com.example.nasaexampleapi.utils.Values.dateFormat
 import org.junit.Test
-import java.text.SimpleDateFormat
 import java.util.*
 
 class HelpersTest {
 
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-    private val dateAfterNOtIncluding = "2014-12-31"
-
     @Test
     fun `given random date in string is requested its not null or empty`() {
         val randomDate = Helpers.getRandomStringDateBeforeToday()
-        assert(!randomDate.isNullOrEmpty())
+        assert(randomDate.isNotEmpty())
     }
 
     @Test
@@ -26,7 +24,7 @@ class HelpersTest {
     fun `given random date in string is requested then returned date is after december 2014`() {
         val randomDateString = Helpers.getRandomStringDateBeforeToday()
         val randomDate = dateFormat.parse(randomDateString)
-        val dateToCompare = dateFormat.parse(dateAfterNOtIncluding)
+        val dateToCompare = dateFormat.parse(dateAfterNotIncluding)
         assert(dateToCompare!!.before(randomDate))
     }
 }

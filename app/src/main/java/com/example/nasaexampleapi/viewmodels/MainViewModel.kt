@@ -1,6 +1,5 @@
 package com.example.nasaexampleapi.viewmodels
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nasaexampleapi.business.NasaApodUseCase
@@ -30,7 +29,6 @@ class MainViewModel : ViewModel() {
         subscribeToFlowableAndPostValues(nasaUseCase.getNasaRandomDayImageOfTheDay())
     }
 
-    @VisibleForTesting
     private fun subscribeToFlowableAndPostValues(flowable: Flowable<ApodImageState>){
         flowable
             .observeOn(Schedulers.io())
