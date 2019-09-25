@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 /**
  * This class will be responsible for deciding whether data will be received from the
- * api or from local storage if there is anything available. At first iteration it'll only
- * retrieve from API
+ * api or from local storage if there is anything available. At the moment only API requests
  */
 class NasaApodRepository @Inject constructor(private val nasaApodApi: ApodApi) {
 

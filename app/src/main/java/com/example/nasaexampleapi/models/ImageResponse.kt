@@ -1,15 +1,36 @@
 package com.example.nasaexampleapi.models
 
-import java.util.Date
-
 data class ImageResponse(
-    var date: Date?,
+    var date: String?,
     var media_type: String?,
     var explanation: String?,
     var hdurl: String?,
     var title: String?,
     var url: String?
 ) {
+    constructor(): this(
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+        )
+
+    constructor(
+        date: String,
+        explanation: String,
+        title: String,
+        url: String
+        ) : this(
+        date,
+        null,
+        explanation,
+        null,
+        title,
+        url
+    )
+
     fun isEmpty(): Boolean {
         return date == null
                 && explanation.isNullOrEmpty()

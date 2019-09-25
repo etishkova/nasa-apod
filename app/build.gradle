@@ -84,4 +84,10 @@ dependencies {
 
     //Image rendering
     implementation "com.github.bumptech.glide:glide:$imageRendering"
+
+    //Junit testing
+    testImplementation "androidx.test:core:$testCore"
+
+    //Mockk for testing
+    testImplementation "io.mockk:mockk:$mockk"
 }
