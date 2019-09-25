@@ -6,7 +6,6 @@ import kotlin.random.Random
 
 object Helpers {
 
-    @JvmStatic
     fun getRandomStringDateBeforeToday(): String {
         val today = Calendar.getInstance()
         val randomYear = Random.nextInt(2015, today.get(Calendar.YEAR) - 1)

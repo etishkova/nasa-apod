@@ -1,7 +1,9 @@
 package com.example.nasaexampleapi.domain
 
-import com.example.nasaexampleapi.models.ImageResponse
 import com.example.nasaexampleapi.network.ApodApi
+import com.example.nasaexampleapi.utils.Values.error
+import com.example.nasaexampleapi.utils.Values.exampleDate
+import com.example.nasaexampleapi.utils.Values.exampleImageResponse
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
@@ -16,14 +18,6 @@ class NasaApodRepositoryTest {
     private val nasaApodApi: ApodApi = mockk()
 
     private lateinit var repository: NasaApodRepository
-    private val exampleDate = "2017-6-3"
-    private val exampleImageResponse = ImageResponse(
-        exampleDate,
-        "explanation",
-        "title",
-        "url"
-    )
-    private val error = Throwable()
 
     @Before
     fun setup() {
