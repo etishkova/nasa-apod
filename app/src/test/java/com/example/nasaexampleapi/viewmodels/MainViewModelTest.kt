@@ -1,17 +1,13 @@
 package com.example.nasaexampleapi.viewmodels
 
-import androidx.lifecycle.ViewModel
 import com.example.nasaexampleapi.business.NasaApodUseCase
 import com.example.nasaexampleapi.di.ApplicationComponent
-import com.example.nasaexampleapi.models.ApodImageState
-import com.example.nasaexampleapi.utilities.Helpers
 import com.example.nasaexampleapi.utilities.NasaApplication
 import com.example.nasaexampleapi.utils.RxImmediateSchedulerRule
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 
 class MainViewModelTest {
     @get: Rule
@@ -36,14 +32,12 @@ class MainViewModelTest {
     }
 
 
+    //TODO: fix this
     /*@Test
-    fun `given main viewModel when image of the day requested then something happens` () {
+    fun `given main viewModel when first created then livedata state is request not started` () {
 
-        verify { viewModel.state.value is ApodImageState.RequestNotStartedYet }
-        //when
+        val currentState = viewModel.state.value
 
-        //then
-        //verify(exactly = 1) { nasaUseCase.getNasaImageOfTheDay() }
-
+        verify { currentState is ApodImageState.RequestNotStartedYet }
     }*/
 }

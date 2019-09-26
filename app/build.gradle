@@ -90,4 +90,12 @@ dependencies {
 
     //Mockk for testing
     testImplementation "io.mockk:mockk:$mockk"
+
+    //Espresso
+    androidTestImplementation "androidx.test:runner:$testrunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso"
+    androidTestImplementation "androidx.test:rules:$testrunner"
+    androidTestImplementation "androidx.test.ext:truth:$testrunner"
+    androidTestImplementation "androidx.test.ext:junit:$testrunnerUnit"
+
 }

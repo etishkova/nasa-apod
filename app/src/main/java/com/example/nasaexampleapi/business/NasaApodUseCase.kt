@@ -1,6 +1,5 @@
 package com.example.nasaexampleapi.business
 
-import androidx.annotation.VisibleForTesting
 import com.example.nasaexampleapi.domain.NasaApodRepository
 import com.example.nasaexampleapi.models.ApodImageState
 import com.example.nasaexampleapi.models.ImageRequest

@@ -11,4 +11,7 @@ ext {
     imageRendering          =   '4.9.0'
     mockk                   =   '1.9.3'
     testCore                =   '1.0.0'
+    espresso                =   '3.3.0-alpha02'
+    testrunner              =   '1.2.0'
+    testrunnerUnit          =   '1.1.1'
 }
