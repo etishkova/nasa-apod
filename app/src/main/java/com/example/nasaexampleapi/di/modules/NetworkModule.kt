@@ -1,7 +1,6 @@
 package com.example.nasaexampleapi.di.modules
 
 import com.example.nasaexampleapi.BuildConfig
-import com.example.nasaexampleapi.di.interfaces.ApplicationScope
 import com.example.nasaexampleapi.network.NetworkInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -13,25 +12,26 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideGsonBuilder(): GsonBuilder {
         return GsonBuilder()
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideGson(gsonBuilder: GsonBuilder): Gson {
         gsonBuilder.setDateFormat("yyyy-MM-dd")
         return gsonBuilder.create()
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideHttpClientBuilder(): OkHttpClient.Builder {
         val okHttpClientBuilder = OkHttpClient.Builder()
         okHttpClientBuilder.connectTimeout(TIMEOUT_CONNECTION.toLong(), TimeUnit.SECONDS)
@@ -40,7 +40,7 @@ class NetworkModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideHttpClient(httpClientBuilder: OkHttpClient.Builder): OkHttpClient {
         //TODO Comment out when uncommenting below
         httpClientBuilder.addInterceptor(NetworkInterceptor())
@@ -52,9 +52,9 @@ class NetworkModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideRetrofitBuilder(
-        @ApplicationScope httpClient: OkHttpClient, @ApplicationScope gson: Gson
+        @Singleton httpClient: OkHttpClient, @Singleton gson: Gson
     ): Retrofit.Builder {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -62,10 +62,10 @@ class NetworkModule {
     }
 
     @Provides
-    @ApplicationScope
+    @Singleton
     fun provideRetrofit(
         retrofitBuilder: Retrofit.Builder,
-        @ApplicationScope httpClient: OkHttpClient
+        @Singleton httpClient: OkHttpClient
     ): Retrofit {
         return retrofitBuilder.baseUrl(API_BASE_URL).client(httpClient).build()
     }
