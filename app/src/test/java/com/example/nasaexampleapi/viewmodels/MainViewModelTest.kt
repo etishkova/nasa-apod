@@ -1,43 +1,52 @@
 package com.example.nasaexampleapi.viewmodels
 
 import com.example.nasaexampleapi.business.NasaApodUseCase
-import com.example.nasaexampleapi.di.ApplicationComponent
-import com.example.nasaexampleapi.utilities.NasaApplication
+import com.example.nasaexampleapi.models.ApodImageState
 import com.example.nasaexampleapi.utils.RxImmediateSchedulerRule
+import com.example.nasaexampleapi.utils.Values.exampleImageResponse
 import io.mockk.*
 import io.mockk.impl.annotations.MockK
+import io.reactivex.Flowable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 class MainViewModelTest {
     @get: Rule
     var testSchedulerRule = RxImmediateSchedulerRule()
 
-    @MockK
-    val nasaUseCase: NasaApodUseCase = mockk()
     @MockK(relaxed = true)
-    var appComponent: ApplicationComponent = mockk()
+    val nasaUseCase: NasaApodUseCase = mockk()
 
     private lateinit var viewModel: MainViewModel
 
-
-    /*@Before
+    @Before
     fun setup() {
-        mockkObject(NasaApplication)
-        every { NasaApplication.appComponent } returns appComponent
-        viewModel = MainViewModel()
-        every { appComponent.inject(viewModel) } just runs
+        viewModel = MainViewModel(nasaUseCase)
+    }
 
-        every { viewModel.nasaUseCase } returns nasaUseCase
-    }*/
-
-
-    //TODO: fix this
-    /*@Test
+    @Test
     fun `given main viewModel when first created then livedata state is request not started` () {
 
         val currentState = viewModel.state.value
 
-        verify { currentState is ApodImageState.RequestNotStartedYet }
+        assert(currentState is ApodImageState.RequestNotStartedYet)
+    }
+
+    /*@Test
+    fun `given main viewModel when requestImageOfTheDay requested then useCase getNasaImageOfTheDay called` () {
+
+        val imageResponseFlowable: Flowable<ApodImageState> = mockk()
+
+        every { nasaUseCase.getNasaImageOfTheDay() } returns imageResponseFlowable
+        every { imageResponseFlowable.observeOn(any()) } returns imageResponseFlowable
+        every { imageResponseFlowable.subscribe(any()) } returns getDisposable()
+
+        viewModel.requestImageOfTheDay()
+
+        verify(exactly = 1) { nasaUseCase.getNasaImageOfTheDay() }
     }*/
 }

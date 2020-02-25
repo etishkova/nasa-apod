@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.nasaexampleapi.business.NasaApodUseCase
 import com.example.nasaexampleapi.models.ApodImageState
-import com.example.nasaexampleapi.utilities.NasaApplication
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.DefaultSubscriber
@@ -22,7 +21,7 @@ class MainViewModel @Inject constructor(private val nasaUseCase: NasaApodUseCase
         subscribeToFlowableAndPostValues(nasaUseCase.getNasaRandomDayImageOfTheDay())
     }
 
-    private fun subscribeToFlowableAndPostValues(flowable: Flowable<ApodImageState>){
+    private fun subscribeToFlowableAndPostValues(flowable: Flowable<ApodImageState>) {
         flowable
             .observeOn(Schedulers.io())
             .subscribe(object: DefaultSubscriber<ApodImageState>() {
@@ -36,6 +35,7 @@ class MainViewModel @Inject constructor(private val nasaUseCase: NasaApodUseCase
                 override fun onError(error: Throwable) {
                     state.postValue(ApodImageState.Error(error))
                 }
+
             })
     }
 }
