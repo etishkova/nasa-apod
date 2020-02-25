@@ -10,10 +10,12 @@ import com.example.nasaexampleapi.models.ApodImageState
 import com.example.nasaexampleapi.models.ImageResponse
 import com.example.nasaexampleapi.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    @Inject
+    lateinit var viewModel: MainViewModel
 
     private var observer: Observer<ApodImageState> = Observer {
         handleResponse(it)
@@ -21,8 +23,8 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getPresentationComponent().inject(this)
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         viewModel.state.observe(this, observer)
     }
 

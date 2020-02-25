@@ -1,6 +1,7 @@
-package com.example.nasaexampleapi.di.modules
+package com.example.nasaexampleapi.di.modules.application
 
 import com.example.nasaexampleapi.BuildConfig
+import com.example.nasaexampleapi.network.ApodApi
 import com.example.nasaexampleapi.network.NetworkInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -68,6 +69,12 @@ class NetworkModule {
         @Singleton httpClient: OkHttpClient
     ): Retrofit {
         return retrofitBuilder.baseUrl(API_BASE_URL).client(httpClient).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApodApi(@Singleton retrofit: Retrofit): ApodApi {
+        return retrofit.create(ApodApi::class.java)
     }
 
     companion object {

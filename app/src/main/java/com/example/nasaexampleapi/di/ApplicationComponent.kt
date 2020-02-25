@@ -1,34 +1,14 @@
 package com.example.nasaexampleapi.di
 
-import android.app.Application
-import com.example.nasaexampleapi.BaseActivity
-import com.example.nasaexampleapi.di.modules.ApiModule
-import com.example.nasaexampleapi.di.modules.NetworkModule
-import com.example.nasaexampleapi.utilities.NasaApplication
-import com.example.nasaexampleapi.viewmodels.MainViewModel
-import dagger.BindsInstance
+import com.example.nasaexampleapi.di.modules.application.ApplicationModule
+import com.example.nasaexampleapi.di.modules.application.NetworkModule
+import com.example.nasaexampleapi.di.modules.presentation.PresentationComponent
+import com.example.nasaexampleapi.di.modules.presentation.PresentationModule
 import dagger.Component
-import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    AndroidInjectionModule::class,
-    NetworkModule::class,
-    ApiModule::class])
+@Component(modules = [ApplicationModule::class, NetworkModule::class])
 interface ApplicationComponent {
-
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
-
-        fun build(): ApplicationComponent
-    }
-
-    fun inject(application: NasaApplication)
-
-    fun inject(mainActivity: BaseActivity)
-
-    fun inject(mainViewModel: MainViewModel)
+    fun newPresentationComponent(presentationModule: PresentationModule): PresentationComponent
 }

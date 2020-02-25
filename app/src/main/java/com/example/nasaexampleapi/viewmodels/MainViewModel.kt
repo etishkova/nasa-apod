@@ -10,16 +10,9 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.DefaultSubscriber
 import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel @Inject constructor(private val nasaUseCase: NasaApodUseCase) : ViewModel() {
 
     var state = MutableLiveData<ApodImageState>(ApodImageState.RequestNotStartedYet)
-
-    @Inject
-    lateinit var nasaUseCase: NasaApodUseCase
-
-    init {
-        NasaApplication.appComponent.inject(this)
-    }
 
     fun requestImageOfTheDay() {
         subscribeToFlowableAndPostValues(nasaUseCase.getNasaImageOfTheDay())
