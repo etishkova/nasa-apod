@@ -29,6 +29,5 @@ API request
 3. There is no caching or database
 4. Espresso tests could be improved by adding a way to match drawable in ImageView. I tried using Android KTX from
 one of the blog posts online, but it didn't work. This is considered as work in progress
-5. I had a problem with unit testing ViewModel and couldn't instantiate it due to some Dagger code. Perhaps this needs reviewing
 
 
