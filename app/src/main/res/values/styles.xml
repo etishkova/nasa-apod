@@ -8,4 +8,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Default_Text" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/heading2_text_color</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Heading2" parent="@style/Default_Text">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Heading3" parent="@style/Heading2">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
