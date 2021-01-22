@@ -5,8 +5,6 @@
     <string name="get_today_image_btn">Get today\'s image</string>
     <string name="get_random_image_btn">Get random image</string>
     <string name="description">Description</string>
-    <string name="date">Date</string>
     <string name="no_image_found">No image found</string>
     <string name="error_occurred">Oops, there is an error retrieving</string>
-    <string name="image_placeholder">Placeholder</string>
 </resources>
